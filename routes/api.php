@@ -23,3 +23,8 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('user', 'Api\AuthController@user');
     });
 });
+
+Route::group(['prefix' => 'expense', 'middleware' => 'auth:api'], function() {
+   Route::post('/','Api\ExpenseController@store');
+   Route::get('/','Api\ExpenseController@getExpenses');
+});
